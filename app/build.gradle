@@ -1,0 +1,111 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "io.github.pengdst.moviecatalogue.made"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "API_KEY", "\"1cb8ea66e27ef093b9c346b353cf6a57\""
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    // UI
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "androidx.legacy:legacy-support-v4:${versions.legacySupportv4}"
+    implementation "com.github.pengdst:viewbinding-delegate:${versions.viewbindingDelegate}"
+    implementation "androidx.activity:activity-ktx:${versions.activity}"
+    implementation "androidx.fragment:fragment-ktx:${versions.fragment}"
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:${versions.hilt}"
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
+    kapt "com.google.dagger:hilt-compiler:${versions.hilt}"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
+
+    // Room
+    implementation "androidx.room:room-ktx:${versions.room}"
+    implementation "androidx.room:room-runtime:${versions.room}"
+    kapt "androidx.room:room-compiler:${versions.room}"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
+
+    // Coroutine Android
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutineAndroid}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutineAndroid}"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:${versions.glide}"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:${versions.lottie}"
+
+    //Mockito
+    testImplementation "org.mockito:mockito-core:${versions.mockito}"
+    testImplementation "org.mockito:mockito-inline:${versions.mockito}"
+    testImplementation "androidx.arch.core:core-testing:${versions.androidCoreTest}"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}"
+
+    // Truth
+    testImplementation "com.google.truth:truth:${versions.truth}"
+
+    testImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.junitExt}"
+    androidTestImplementation "androidx.test:runner:${versions.androidTest}"
+    androidTestImplementation "androidx.test:rules:${versions.androidTest}"
+
+    // Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-accessibility:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-web:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:${versions.espresso}"
+}
