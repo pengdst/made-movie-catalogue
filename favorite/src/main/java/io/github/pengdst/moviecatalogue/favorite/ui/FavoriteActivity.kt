@@ -11,7 +11,7 @@ import io.github.pengdst.moviecatalogue.made.R
 import io.github.pengdst.moviecatalogue.made.core.di.ActivityDependencies
 import io.github.pengdst.moviecatalogue.made.core.domain.models.Section
 import io.github.pengdst.moviecatalogue.made.core.ui.SectionsPagerAdapter
-import io.github.pengdst.moviecatalogue.made.databinding.ActivityFavoriteBinding
+import io.github.pengdst.moviecatalogue.favorite.databinding.ActivityFavoriteBinding
 import io.github.pengdst.moviecatalogue.made.di.appModule
 import io.github.pengdst.moviecatalogue.made.ui.detail.DetailActivity
 import io.github.pengdst.moviecatalogue.made.ui.favorite.sections.movie.MovieFavoriteFragment
