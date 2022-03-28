@@ -1,6 +1,5 @@
 package io.github.pengdst.moviecatalogue.made.core.data.source.local.room.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import io.github.pengdst.moviecatalogue.made.core.data.source.local.room.model.MovieEntity
 import io.github.pengdst.moviecatalogue.made.core.data.source.local.room.model.TvShowEntity

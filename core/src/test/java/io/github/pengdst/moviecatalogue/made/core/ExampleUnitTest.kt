@@ -1,4 +1,4 @@
-package io.github.pengdst.moviecatalogue.core
+package io.github.pengdst.moviecatalogue.made.core
 
 import org.junit.Test
 

@@ -35,9 +35,9 @@ data class TvShow(
     }
 
     @Suppress("MemberVisibilityCanBePrivate")
-    var posterBaseUrl = ApiConst.IMAGE_URL_W500
+    var posterBaseUrl = io.github.pengdst.moviecatalogue.made.core.data.constants.ApiConst.IMAGE_URL_W500
     @Suppress("MemberVisibilityCanBePrivate")
-    var backdropBaseUrl = ApiConst.IMAGE_URL_ORIGINAL
+    var backdropBaseUrl = io.github.pengdst.moviecatalogue.made.core.data.constants.ApiConst.IMAGE_URL_ORIGINAL
     val imagePosterUrl: String get() = posterBaseUrl + posterPath
     val imageBackdropUrl: String get() = backdropBaseUrl + backdropPath
 }

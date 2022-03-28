@@ -7,7 +7,6 @@ import io.github.pengdst.moviecatalogue.made.core.data.source.remote.retrofit.mo
 import io.github.pengdst.moviecatalogue.made.core.data.source.remote.retrofit.response.MovieResponse
 import io.github.pengdst.moviecatalogue.made.core.data.source.remote.retrofit.response.TvResponse
 import io.github.pengdst.moviecatalogue.made.core.data.source.remote.retrofit.routes.MovieRoute
-import io.github.pengdst.moviecatalogue.made.utils.EspressoIdlingResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
