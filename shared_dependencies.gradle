@@ -14,6 +14,9 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
     kapt "com.google.dagger:hilt-compiler:${versions.hilt}"
 
+    // Koin
+    implementation "io.insert-koin:koin-android:${versions.koin}"
+
     // Coroutine Android
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutineAndroid}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutineAndroid}"

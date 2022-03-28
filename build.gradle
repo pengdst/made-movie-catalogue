@@ -30,6 +30,7 @@ buildscript {
                 'paging'             : "3.0.0",
                 "okhttp"             : '5.0.0-alpha.6',
                 "hilt"               : '2.41',
+                "koin"               : '3.2.0-beta-1',
         ]
     }
 
