@@ -1,4 +1,4 @@
-package io.github.pengdst.moviecatalogue.made.utils
+package io.github.pengdst.moviecatalogue.made.core.utils
 
 import android.content.Context
 import android.widget.Toast

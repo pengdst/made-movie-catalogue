@@ -15,7 +15,7 @@ import io.github.pengdst.moviecatalogue.made.databinding.FragmentMovieListBindin
 import io.github.pengdst.moviecatalogue.made.ui.home.ContentCallback
 import io.github.pengdst.moviecatalogue.made.ui.home.HomeViewModel
 import io.github.pengdst.moviecatalogue.made.utils.DataStore
-import io.github.pengdst.moviecatalogue.made.utils.longToast
+import io.github.pengdst.moviecatalogue.made.core.utils.longToast
 import javax.inject.Inject
 
 @AndroidEntryPoint

@@ -14,7 +14,7 @@ import io.github.pengdst.moviecatalogue.made.core.domain.models.Movie
 import io.github.pengdst.moviecatalogue.made.core.domain.models.TvShow
 import io.github.pengdst.moviecatalogue.made.databinding.ActivityDetailBinding
 import io.github.pengdst.moviecatalogue.made.utils.DataStore
-import io.github.pengdst.moviecatalogue.made.utils.longToast
+import io.github.pengdst.moviecatalogue.made.core.utils.longToast
 
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
