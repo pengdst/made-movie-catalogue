@@ -24,12 +24,9 @@ class MovieRemoteSource(
 ) {
 
     suspend fun getUpcomingMovies(): Flow<ApiResponse<MovieResponse>> {
-        EspressoIdlingResource.increment()
         return flow {
             try {
-                val response = movieRoute.getUpcomingMovies().also {
-                    EspressoIdlingResource.decrement()
-                }
+                val response = movieRoute.getUpcomingMovies()
                 val movieResponse = response.body() ?: return@flow emit(ApiResponse.Empty)
                 emit(if (movieResponse.results.isNullOrEmpty()) ApiResponse.Empty else ApiResponse.Success(movieResponse))
             }catch (t: Throwable) {
@@ -40,12 +37,9 @@ class MovieRemoteSource(
     }
 
     suspend fun getMovie(movieId: String): Flow<ApiResponse<MovieDto>> {
-        EspressoIdlingResource.increment()
         return flow {
             try {
-                val response = movieRoute.getMovie(movieId).also {
-                    EspressoIdlingResource.decrement()
-                }
+                val response = movieRoute.getMovie(movieId)
                 val movieDto = response.body() ?: return@flow emit(ApiResponse.Error(response.message().toString()))
                 emit(ApiResponse.Success(movieDto))
             }catch (t: Throwable) {
@@ -56,12 +50,9 @@ class MovieRemoteSource(
     }
 
     suspend fun getOnAirTvShows(): Flow<ApiResponse<TvResponse>> {
-        EspressoIdlingResource.increment()
         return flow {
             try {
-                val response = movieRoute.getTvOnAir().also {
-                    EspressoIdlingResource.decrement()
-                }
+                val response = movieRoute.getTvOnAir()
                 val tvResponse = response.body() ?: return@flow emit(ApiResponse.Empty)
                 emit(if (tvResponse.results.isNullOrEmpty()) ApiResponse.Empty else ApiResponse.Success(tvResponse))
             }catch (t: Throwable) {
@@ -72,12 +63,9 @@ class MovieRemoteSource(
     }
 
     suspend fun getTvShow(tvId: String): Flow<ApiResponse<TvShowDto>> {
-        EspressoIdlingResource.increment()
         return flow {
             try {
-                val response = movieRoute.getTv(tvId).also {
-                    EspressoIdlingResource.decrement()
-                }
+                val response = movieRoute.getTv(tvId)
                 val tvDto = response.body() ?: return@flow emit(ApiResponse.Error(response.message().toString()))
                 emit(ApiResponse.Success(tvDto))
             }catch (t: Throwable) {
