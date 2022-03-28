@@ -12,4 +12,25 @@ import dagger.hilt.android.HiltAndroidApp
  */
 
 @HiltAndroidApp
-class MovieCatalogueApp : Application()
+class MovieCatalogueApp : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidLogger(Level.NONE)
+            androidContext(this@MovieCatalogueApp)
+            fragmentFactory()
+            modules(
+                listOf(
+                    appModule,
+                    coreModule,
+                    databaseModule,
+                    networkModule,
+                    repositoryModule,
+                    useCaseModule,
+                    viewModelModule,
+                )
+            )
+        }
+    }
+}
