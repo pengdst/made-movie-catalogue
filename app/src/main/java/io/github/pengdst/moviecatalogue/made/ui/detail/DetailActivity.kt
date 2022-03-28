@@ -10,6 +10,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.libs.ui.activity.viewbinding.ActivityViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.moviecatalogue.made.R
 import io.github.pengdst.moviecatalogue.made.core.data.vo.Resource
+import io.github.pengdst.moviecatalogue.made.core.domain.models.Movie
+import io.github.pengdst.moviecatalogue.made.core.domain.models.TvShow
 import io.github.pengdst.moviecatalogue.made.databinding.ActivityDetailBinding
 import io.github.pengdst.moviecatalogue.made.utils.DataStore
 import io.github.pengdst.moviecatalogue.made.utils.longToast
@@ -49,16 +51,7 @@ class DetailActivity : AppCompatActivity() {
                         binding.fabFavourite.setOnClickListener {
                             viewModel.setBookmark(resource.data)
                         }
-                        populateDetail(
-                            title = resource.data.title,
-                            genre = resource.data.genre,
-                            language = resource.data.language,
-                            releaseDate = resource.data.releaseDate,
-                            storyLine = resource.data.storyLine,
-                            posterUrl = resource.data.imagePosterUrl,
-                            backdropUrl = resource.data.imageBackdropUrl,
-                            isFavourite = resource.data.isFavourite
-                        )
+                        populateDetail(resource.data)
                     }
                     is Resource.Error -> longToast(resource.message)
                     is Resource.Loading -> showLoading(true)
@@ -71,16 +64,7 @@ class DetailActivity : AppCompatActivity() {
                         binding.fabFavourite.setOnClickListener {
                             viewModel.setBookmark(resource.data)
                         }
-                        populateDetail(
-                            title = resource.data.title,
-                            genre = resource.data.genre,
-                            language = resource.data.language,
-                            releaseDate = resource.data.releaseDate,
-                            storyLine = resource.data.storyLine,
-                            posterUrl = resource.data.imagePosterUrl,
-                            backdropUrl = resource.data.imageBackdropUrl,
-                            isFavourite = resource.data.isFavourite
-                        )
+                        populateDetail(mapFromTvShow(resource.data))
                     }
                     is Resource.Error -> longToast(resource.message)
                     is Resource.Loading -> showLoading(true)
@@ -95,40 +79,45 @@ class DetailActivity : AppCompatActivity() {
         binding.ltLoading.isVisible = isLoading
     }
 
-    private fun populateDetail(
-        title: String?,
-        genre: String?,
-        language: String?,
-        releaseDate: String?,
-        storyLine: String?,
-        posterUrl: String?,
-        backdropUrl: String?,
-        isFavourite: Boolean = false
-    ) {
+    private fun populateDetail(movie: Movie) {
         with(binding) {
-            toolbar.title = title
-            tvTitle.text = title
-            tvGenre.text = genre
-            tvLanguage.text = language
-            tvReleaseDate.text = releaseDate
-            tvStoryline.text = storyLine
-            fabFavourite.setImageResource(if (isFavourite) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24)
+            toolbar.title = movie.title
+            tvTitle.text = movie.title
+            tvGenre.text = movie.genre
+            tvLanguage.text = movie.language
+            tvReleaseDate.text = movie.releaseDate
+            tvStoryline.text = movie.storyLine
+            fabFavourite.setImageResource(if (movie.isFavourite) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24)
 
             Glide.with(applicationContext)
-                .load(backdropUrl)
+                .load(movie.imageBackdropUrl)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)
                 .into(ivBackdrop)
 
             Glide.with(applicationContext)
-                .load(posterUrl)
+                .load(movie.imagePosterUrl)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.ic_baseline_broken_image_24)
                 .into(ivThumbnail)
         }
     }
+
+    private fun mapFromTvShow(tvShow: TvShow) = Movie(
+        id = tvShow.id,
+        title = tvShow.title,
+        genre = tvShow.genre,
+        language = tvShow.language,
+        releaseDate = tvShow.releaseDate,
+        storyLine = tvShow.storyLine,
+        posterPath = tvShow.posterPath,
+        backdropPath = tvShow.backdropPath,
+        isFavourite = tvShow.isFavourite,
+        createdAt = tvShow.createdAt,
+        updatedAt = tvShow.updatedAt
+    )
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
