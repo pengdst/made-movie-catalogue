@@ -1,6 +1,6 @@
 package io.github.pengdst.moviecatalogue.made.core.data.source.remote.retrofit
 
-import io.github.pengdst.moviecatalogue.made.BuildConfig
+import io.github.pengdst.moviecatalogue.made.core.BuildConfig
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request

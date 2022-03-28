@@ -7,23 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.libs.ui.fragment.viewbinding.FragmentViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.moviecatalogue.made.core.data.vo.Resource
+import io.github.pengdst.moviecatalogue.made.core.utils.longToast
 import io.github.pengdst.moviecatalogue.made.databinding.FragmentMovieListBinding
 import io.github.pengdst.moviecatalogue.made.ui.home.ContentCallback
 import io.github.pengdst.moviecatalogue.made.ui.home.HomeViewModel
 import io.github.pengdst.moviecatalogue.made.utils.DataStore
-import io.github.pengdst.moviecatalogue.made.core.utils.longToast
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class MovieListFragment : Fragment() {
 
     private val binding: FragmentMovieListBinding by viewBindings()
-    private val viewModel: HomeViewModel by viewModels()
-    @Inject lateinit var movieListAdapter: MovieListAdapter
+    private val viewModel: HomeViewModel by inject()
+    private val movieListAdapter: MovieListAdapter by inject()
     private var contentCallback: ContentCallback? = null
 
     override fun onCreateView(

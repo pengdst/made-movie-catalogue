@@ -1,4 +1,4 @@
-package io.github.pengdst.moviecatalogue.made.ui.favorite.sections.tv
+package io.github.pengdst.moviecatalogue.made.ui.favorite.sections.movie
 
 import android.content.Context
 import android.os.Bundle
@@ -7,24 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.libs.ui.fragment.viewbinding.FragmentViewBindingDelegate.Companion.viewBindings
-import io.github.pengdst.moviecatalogue.made.databinding.FragmentTvShowListBinding
-import io.github.pengdst.moviecatalogue.made.ui.favorite.FavoriteAdapter
-import io.github.pengdst.moviecatalogue.made.ui.favorite.FavoriteViewModel
+import io.github.pengdst.moviecatalogue.favorite.ui.FavoriteAdapter
+import io.github.pengdst.moviecatalogue.favorite.ui.FavoriteViewModel
+import io.github.pengdst.moviecatalogue.made.databinding.FragmentMovieListBinding
 import io.github.pengdst.moviecatalogue.made.ui.home.ContentCallback
 import io.github.pengdst.moviecatalogue.made.utils.DataStore
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
-class TvShowFavoriteFragment : Fragment() {
+class MovieFavoriteFragment : Fragment() {
 
-    private val binding: FragmentTvShowListBinding by viewBindings()
-    private val viewModel: FavoriteViewModel by viewModels()
-    @Inject lateinit var favoriteAdapter: FavoriteAdapter
+    private val binding: FragmentMovieListBinding by viewBindings()
+    private val viewModel: FavoriteViewModel by inject()
+    private val favoriteAdapter: FavoriteAdapter by inject()
     private var contentCallback: ContentCallback? = null
 
     override fun onCreateView(
@@ -44,9 +41,9 @@ class TvShowFavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        viewModel.getFavoriteData(DataStore.TYPE_TV_SHOW).observe(viewLifecycleOwner){
-            showLoading(false)
+        viewModel.getFavoriteData(DataStore.TYPE_MOVIE).observe(viewLifecycleOwner) {
             favoriteAdapter.submitData(it)
+            showLoading(false)
         }
     }
 
@@ -55,10 +52,10 @@ class TvShowFavoriteFragment : Fragment() {
     }
 
     private fun setupRecyclerView(){
-        favoriteAdapter.setOnItemClickListener { _, tv, position ->
-            contentCallback?.moveTo(position, tv.id, tv.type)
+        favoriteAdapter.setOnItemClickListener { _, movie, position ->
+            contentCallback?.moveTo(position, movie.id, movie.type)
         }
-        binding.rvTvShows.apply {
+        binding.rvMovies.apply {
             adapter = favoriteAdapter
             layoutManager = StaggeredGridLayoutManager(3, RecyclerView.VERTICAL)
         }

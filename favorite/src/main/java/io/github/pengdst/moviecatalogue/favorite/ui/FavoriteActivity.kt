@@ -3,27 +3,32 @@ package io.github.pengdst.moviecatalogue.made.ui.favorite
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.EntryPoints
 import io.github.pengdst.libs.ui.activity.viewbinding.ActivityViewBindingDelegate.Companion.viewBindings
+import io.github.pengdst.moviecatalogue.favorite.di.DaggerFavoriteComponent
+import io.github.pengdst.moviecatalogue.favorite.di.favoriteModule
+import io.github.pengdst.moviecatalogue.favorite.ui.sections.movie.MovieFavoriteFragment
+import io.github.pengdst.moviecatalogue.favorite.ui.sections.tv.TvShowFavoriteFragment
 import io.github.pengdst.moviecatalogue.made.R
-import io.github.pengdst.moviecatalogue.made.databinding.ActivityFavoriteBinding
+import io.github.pengdst.moviecatalogue.made.core.di.ActivityDependencies
 import io.github.pengdst.moviecatalogue.made.core.domain.models.Section
+import io.github.pengdst.moviecatalogue.made.core.ui.SectionsPagerAdapter
+import io.github.pengdst.moviecatalogue.made.databinding.ActivityFavoriteBinding
+import io.github.pengdst.moviecatalogue.made.di.appModule
 import io.github.pengdst.moviecatalogue.made.ui.detail.DetailActivity
-import io.github.pengdst.moviecatalogue.made.ui.favorite.sections.movie.MovieFavoriteFragment
-import io.github.pengdst.moviecatalogue.made.ui.favorite.sections.tv.TvShowFavoriteFragment
 import io.github.pengdst.moviecatalogue.made.ui.home.ContentCallback
-import io.github.pengdst.moviecatalogue.made.ui.home.sections.SectionsPagerAdapter
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.core.context.loadKoinModules
+import org.koin.core.parameter.parametersOf
 
-@AndroidEntryPoint
 class FavoriteActivity : AppCompatActivity(), ContentCallback {
 
     private val binding: ActivityFavoriteBinding by viewBindings()
-    @Inject
-    lateinit var sectionsPagerAdapter: SectionsPagerAdapter
+    private val sectionsPagerAdapter: SectionsPagerAdapter by inject { parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadKoinModules(listOf(favoriteModule, appModule))
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
@@ -44,5 +49,17 @@ class FavoriteActivity : AppCompatActivity(), ContentCallback {
         }.also {
             startActivity(it)
         }
+    }
+
+    fun initDependencies() {
+
+        val dynamicModulesDependencies = EntryPoints.get(
+            applicationContext,
+            ActivityDependencies::class.java
+        )
+
+        DaggerFavoriteComponent.factory()
+            .create(dynamicModulesDependencies)
+            .inject(this)
     }
 }

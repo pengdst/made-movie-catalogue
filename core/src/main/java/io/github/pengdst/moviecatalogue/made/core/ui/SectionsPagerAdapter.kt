@@ -1,4 +1,4 @@
-package io.github.pengdst.moviecatalogue.made.ui.home.sections
+package io.github.pengdst.moviecatalogue.made.core.ui
 
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentPagerAdapter

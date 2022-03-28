@@ -1,28 +1,26 @@
 package io.github.pengdst.moviecatalogue.made.ui.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import dagger.hilt.android.AndroidEntryPoint
-import io.github.pengdst.moviecatalogue.made.core.domain.models.Section
-import io.github.pengdst.moviecatalogue.made.ui.detail.DetailActivity
-import io.github.pengdst.moviecatalogue.made.ui.favorite.FavoriteActivity
-import io.github.pengdst.moviecatalogue.made.ui.home.sections.SectionsPagerAdapter
-import io.github.pengdst.moviecatalogue.made.ui.home.sections.movie.MovieListFragment
-import io.github.pengdst.moviecatalogue.made.ui.home.sections.tv.TvShowListFragment
 import io.github.pengdst.libs.ui.activity.viewbinding.ActivityViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.moviecatalogue.made.R
+import io.github.pengdst.moviecatalogue.made.core.domain.models.Section
+import io.github.pengdst.moviecatalogue.made.core.ui.SectionsPagerAdapter
 import io.github.pengdst.moviecatalogue.made.databinding.ActivityMainBinding
-import javax.inject.Inject
+import io.github.pengdst.moviecatalogue.made.ui.detail.DetailActivity
+import io.github.pengdst.moviecatalogue.made.ui.home.sections.movie.MovieListFragment
+import io.github.pengdst.moviecatalogue.made.ui.home.sections.tv.TvShowListFragment
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
-@AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), ContentCallback {
 
     private val binding: ActivityMainBinding by viewBindings()
-    @Inject
-    lateinit var sectionsPagerAdapter: SectionsPagerAdapter
+    private val sectionsPagerAdapter: SectionsPagerAdapter by inject { parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

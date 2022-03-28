@@ -1,22 +1,20 @@
 package io.github.pengdst.moviecatalogue.made.ui.detail
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.libs.ui.activity.viewbinding.ActivityViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.moviecatalogue.made.R
 import io.github.pengdst.moviecatalogue.made.core.data.vo.Resource
 import io.github.pengdst.moviecatalogue.made.core.domain.models.Movie
 import io.github.pengdst.moviecatalogue.made.core.domain.models.TvShow
+import io.github.pengdst.moviecatalogue.made.core.utils.longToast
 import io.github.pengdst.moviecatalogue.made.databinding.ActivityDetailBinding
 import io.github.pengdst.moviecatalogue.made.utils.DataStore
-import io.github.pengdst.moviecatalogue.made.core.utils.longToast
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
     companion object {
@@ -27,7 +25,7 @@ class DetailActivity : AppCompatActivity() {
 
     private var extras: Bundle? = null
     private val binding: ActivityDetailBinding by viewBindings()
-    private val viewModel: DetailViewModel by viewModels()
+    private val viewModel: DetailViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
