@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import io.github.pengdst.moviecatalogue.made.R
-import io.github.pengdst.moviecatalogue.made.base.BaseListAdapter
 import io.github.pengdst.moviecatalogue.made.core.domain.models.TvShow
+import io.github.pengdst.moviecatalogue.made.core.ui.BaseAdapter
 import io.github.pengdst.moviecatalogue.made.databinding.ItemTvShowBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,7 +20,7 @@ import javax.inject.Inject
  * - Gitlab https://gitlab.com/pengdst
  * - LinkedIn https://linkedin.com/in/pengdst
  */
-class TvShowListAdapter @Inject constructor() : BaseListAdapter<TvShow, TvShowListAdapter.ViewHolder>(
+class TvShowListAdapter @Inject constructor() : BaseAdapter.ListAnimated<TvShow, TvShowListAdapter.ViewHolder>(
     TvShow.diffCallback) {
 
     class ViewHolder(private val binding: ItemTvShowBinding) :

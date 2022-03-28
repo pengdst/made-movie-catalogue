@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.pengdst.moviecatalogue.made.R
-import io.github.pengdst.moviecatalogue.made.base.BaseListAdapter
+import io.github.pengdst.moviecatalogue.made.core.ui.BaseAdapter
 import io.github.pengdst.moviecatalogue.made.databinding.ItemFavoriteBoxBinding
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ import javax.inject.Inject
  * - Gitlab https://gitlab.com/pengdst
  * - LinkedIn https://linkedin.com/in/pengdst
  */
-class FavoriteAdapter @Inject constructor() : BaseListAdapter<FavoriteData, FavoriteAdapter.ViewHolder>(
+class FavoriteAdapter @Inject constructor() : BaseAdapter.ListAnimated<FavoriteData, FavoriteAdapter.ViewHolder>(
     FavoriteData.diffCallback) {
 
     class ViewHolder(private val binding: ItemFavoriteBoxBinding) :

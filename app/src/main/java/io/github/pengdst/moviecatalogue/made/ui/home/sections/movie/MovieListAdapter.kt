@@ -7,8 +7,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import io.github.pengdst.moviecatalogue.made.R
-import io.github.pengdst.moviecatalogue.made.base.BaseListAdapter
 import io.github.pengdst.moviecatalogue.made.core.domain.models.Movie
+import io.github.pengdst.moviecatalogue.made.core.ui.BaseAdapter
 import io.github.pengdst.moviecatalogue.made.databinding.ItemMovieBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,7 +21,7 @@ import javax.inject.Inject
  * - Gitlab https://gitlab.com/pengdst
  * - LinkedIn https://linkedin.com/in/pengdst
  */
-class MovieListAdapter @Inject constructor()  : BaseListAdapter<Movie, MovieListAdapter.ViewHolder>(
+class MovieListAdapter @Inject constructor()  : BaseAdapter.ListAnimated<Movie, MovieListAdapter.ViewHolder>(
     Movie.diffCallback) {
 
     class ViewHolder(private val binding: ItemMovieBinding) :
