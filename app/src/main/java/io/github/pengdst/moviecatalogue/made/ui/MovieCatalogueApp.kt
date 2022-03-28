@@ -19,7 +19,6 @@ import org.koin.core.logger.Level
  * - LinkedIn https://linkedin.com/in/pengdst
  */
 
-@HiltAndroidApp
 class MovieCatalogueApp : Application() {
 
     override fun onCreate() {
