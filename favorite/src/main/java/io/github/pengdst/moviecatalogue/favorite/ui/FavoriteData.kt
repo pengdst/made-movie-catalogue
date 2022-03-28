@@ -1,4 +1,4 @@
-package io.github.pengdst.moviecatalogue.made.ui.favorite
+package io.github.pengdst.moviecatalogue.favorite.ui
 
 import androidx.recyclerview.widget.DiffUtil
 

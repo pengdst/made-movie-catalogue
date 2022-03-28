@@ -1,4 +1,4 @@
-package io.github.pengdst.moviecatalogue.made.ui.favorite
+package io.github.pengdst.moviecatalogue.favorite.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

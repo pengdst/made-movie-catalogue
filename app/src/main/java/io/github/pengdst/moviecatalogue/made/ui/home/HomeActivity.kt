@@ -42,7 +42,8 @@ class HomeActivity : AppCompatActivity(), ContentCallback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_favorite -> {
-                startActivity(Intent(this, FavoriteActivity::class.java))
+                val uri = Uri.parse("moviecatalogue://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
         return super.onOptionsItemSelected(item)
