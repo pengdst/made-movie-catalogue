@@ -45,4 +45,6 @@ android {
 dependencies {
     implementation project(":core")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }
