@@ -4,7 +4,7 @@ import io.github.pengdst.moviecatalogue.made.core.data.source.remote.helpers.Api
 import io.github.pengdst.moviecatalogue.made.core.data.vo.Resource
 import kotlinx.coroutines.flow.*
 
-abstract class NetworkBoundResource<ResultType, RequestType>() {
+abstract class NetworkBoundResource<ResultType, RequestType> {
 
     private val result = flow<Resource<ResultType>> {
         emit(Resource.Loading(null))

@@ -1,7 +1,6 @@
 package io.github.pengdst.moviecatalogue.made.ui
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
 import io.github.pengdst.moviecatalogue.made.core.di.*
 import io.github.pengdst.moviecatalogue.made.di.appModule
 import io.github.pengdst.moviecatalogue.made.di.viewModelModule
@@ -19,6 +18,7 @@ import org.koin.core.logger.Level
  * - LinkedIn https://linkedin.com/in/pengdst
  */
 
+@Suppress("unused")
 class MovieCatalogueApp : Application() {
 
     override fun onCreate() {

@@ -1,6 +1,5 @@
 package io.github.pengdst.moviecatalogue.made.core.di
 
-import androidx.fragment.app.Fragment
 import io.github.pengdst.moviecatalogue.made.core.data.repository.MovieRepository
 import io.github.pengdst.moviecatalogue.made.core.data.source.local.MovieLocalSource
 import io.github.pengdst.moviecatalogue.made.core.data.source.local.room.MovieRoomDatabase
@@ -12,8 +11,6 @@ import io.github.pengdst.moviecatalogue.made.core.domain.usecase.MovieInteractor
 import io.github.pengdst.moviecatalogue.made.core.domain.usecase.MovieUsecase
 import io.github.pengdst.moviecatalogue.made.core.ui.SectionsPagerAdapter
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.fragment.dsl.fragment
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 

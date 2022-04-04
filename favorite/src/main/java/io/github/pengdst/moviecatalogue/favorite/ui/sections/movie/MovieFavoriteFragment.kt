@@ -1,4 +1,4 @@
-package io.github.pengdst.moviecatalogue.made.ui.favorite.sections.movie
+package io.github.pengdst.moviecatalogue.favorite.ui.sections.movie
 
 import android.content.Context
 import android.os.Bundle

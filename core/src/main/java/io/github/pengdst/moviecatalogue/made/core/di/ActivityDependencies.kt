@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.github.pengdst.moviecatalogue.made.core.di
 
 import androidx.fragment.app.FragmentActivity

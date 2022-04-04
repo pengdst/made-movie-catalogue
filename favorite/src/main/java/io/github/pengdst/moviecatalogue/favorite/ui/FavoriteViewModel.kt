@@ -21,9 +21,9 @@ class FavoriteViewModel @Inject constructor(
     private val movieUsecase: MovieUsecase
 ) : ViewModel() {
 
-    fun getMovies() = movieUsecase.getBookmarkedMovies()
+    private fun getMovies() = movieUsecase.getBookmarkedMovies()
 
-    fun getTvShowList() = movieUsecase.getBookmarkedTvShows()
+    private fun getTvShowList() = movieUsecase.getBookmarkedTvShows()
 
     fun getFavoriteData(type: String) = when (type) {
         DataStore.TYPE_MOVIE -> getMovies().map { list ->

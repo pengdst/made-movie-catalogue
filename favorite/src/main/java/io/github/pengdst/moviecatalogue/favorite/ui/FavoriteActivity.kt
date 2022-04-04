@@ -3,19 +3,16 @@ package io.github.pengdst.moviecatalogue.favorite.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dagger.hilt.EntryPoints
 import io.github.pengdst.libs.ui.activity.viewbinding.ActivityViewBindingDelegate.Companion.viewBindings
-import io.github.pengdst.moviecatalogue.favorite.di.DaggerFavoriteComponent
+import io.github.pengdst.moviecatalogue.favorite.databinding.ActivityFavoriteBinding
 import io.github.pengdst.moviecatalogue.favorite.di.favoriteModule
+import io.github.pengdst.moviecatalogue.favorite.ui.sections.movie.MovieFavoriteFragment
+import io.github.pengdst.moviecatalogue.favorite.ui.sections.tv.TvShowFavoriteFragment
 import io.github.pengdst.moviecatalogue.made.R
-import io.github.pengdst.moviecatalogue.made.core.di.ActivityDependencies
 import io.github.pengdst.moviecatalogue.made.core.domain.models.Section
 import io.github.pengdst.moviecatalogue.made.core.ui.SectionsPagerAdapter
-import io.github.pengdst.moviecatalogue.favorite.databinding.ActivityFavoriteBinding
 import io.github.pengdst.moviecatalogue.made.di.appModule
 import io.github.pengdst.moviecatalogue.made.ui.detail.DetailActivity
-import io.github.pengdst.moviecatalogue.made.ui.favorite.sections.movie.MovieFavoriteFragment
-import io.github.pengdst.moviecatalogue.made.ui.favorite.sections.tv.TvShowFavoriteFragment
 import io.github.pengdst.moviecatalogue.made.ui.home.ContentCallback
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
@@ -51,15 +48,4 @@ class FavoriteActivity : AppCompatActivity(), ContentCallback {
         }
     }
 
-    fun initDependencies() {
-
-        val dynamicModulesDependencies = EntryPoints.get(
-            applicationContext,
-            ActivityDependencies::class.java
-        )
-
-        DaggerFavoriteComponent.factory()
-            .create(dynamicModulesDependencies)
-            .inject(this)
-    }
 }

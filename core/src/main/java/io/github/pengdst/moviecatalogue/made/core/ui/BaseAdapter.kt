@@ -13,9 +13,6 @@ abstract class BaseAdapter {
         }
     }
 
-    abstract class Recycler {
-    }
-
     abstract class ListAnimated<Data, VH : RecyclerView.ViewHolder>(
         diffItemCallback: DiffUtil.ItemCallback<Data>
     ) : ListAdapter<Data, VH>(diffItemCallback) {
