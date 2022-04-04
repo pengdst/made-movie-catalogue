@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 import io.github.pengdst.moviecatalogue.made.core.data.source.local.room.dao.MovieDao
 import io.github.pengdst.moviecatalogue.made.core.data.source.local.room.model.MovieEntity
 import io.github.pengdst.moviecatalogue.made.core.data.source.local.room.model.TvShowEntity
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 
 /**
  * Created on 6/2/21 by Pengkuh Dwi Septiandi (@pengdst)
@@ -29,7 +31,12 @@ abstract class MovieRoomDatabase : RoomDatabase() {
                 Room.databaseBuilder(
                     context.applicationContext,
                     MovieRoomDatabase::class.java, "movie_database"
-                ).build().also {
+                ).fallbackToDestructiveMigration()
+                    .apply {
+                        val passphrase: ByteArray = SQLiteDatabase.getBytes("pengdst".toCharArray())
+                        openHelperFactory(SupportFactory(passphrase))
+                    }
+                .build().also {
                     INSTANCE = it
                 }
             }
