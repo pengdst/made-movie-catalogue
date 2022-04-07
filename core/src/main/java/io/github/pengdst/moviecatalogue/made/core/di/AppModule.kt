@@ -23,7 +23,9 @@ val databaseModule = module {
 
 val networkModule = module {
 
-    single { RetrofitBuilder.build() }
+    single { RetrofitBuilder.okHttpClient() }
+
+    single { RetrofitBuilder.build(get()) }
 
     single { get<Retrofit>().create(MovieRoute::class.java) }
 }

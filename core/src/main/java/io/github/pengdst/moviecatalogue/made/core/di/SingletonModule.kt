@@ -11,6 +11,7 @@ import io.github.pengdst.moviecatalogue.made.core.data.source.local.MovieLocalSo
 import io.github.pengdst.moviecatalogue.made.core.data.source.remote.retrofit.RetrofitBuilder
 import io.github.pengdst.moviecatalogue.made.core.data.source.remote.retrofit.routes.MovieRoute
 import io.github.pengdst.moviecatalogue.made.core.data.source.remote.MovieRemoteSource
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -28,7 +29,11 @@ object SingletonModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitInstance() = RetrofitBuilder.build()
+    fun provideOkhttpClient() = RetrofitBuilder.okHttpClient()
+
+    @Provides
+    @Singleton
+    fun provideRetrofitInstance(okHttpClient: OkHttpClient) = RetrofitBuilder.build(okHttpClient)
 
     @Provides
     @Singleton

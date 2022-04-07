@@ -23,23 +23,15 @@ abstract class MovieRoomDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: MovieRoomDatabase? = null
-
         fun newInstance(context: Context): MovieRoomDatabase {
-            return INSTANCE ?: synchronized(MovieRoomDatabase::class.java) {
-                Room.databaseBuilder(
-                    context.applicationContext,
-                    MovieRoomDatabase::class.java, "movie_database"
-                ).fallbackToDestructiveMigration()
-                    .apply {
-                        val passphrase: ByteArray = SQLiteDatabase.getBytes("pengdst".toCharArray())
-                        openHelperFactory(SupportFactory(passphrase))
-                    }
-                .build().also {
-                    INSTANCE = it
-                }
-            }
+            return Room.databaseBuilder(
+                context.applicationContext,
+                MovieRoomDatabase::class.java, "movie_database"
+            ).fallbackToDestructiveMigration()
+                .apply {
+                    val passphrase: ByteArray = SQLiteDatabase.getBytes("pengdst".toCharArray())
+                    openHelperFactory(SupportFactory(passphrase))
+                }.build()
         }
     }
 }

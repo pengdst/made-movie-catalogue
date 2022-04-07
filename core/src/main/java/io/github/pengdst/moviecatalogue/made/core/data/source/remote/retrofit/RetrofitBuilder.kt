@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object RetrofitBuilder {
 
-    private fun okHttpClient(): OkHttpClient {
+    fun okHttpClient(): OkHttpClient {
         val hostname = "api.themoviedb.org"
         val certificatePinner = CertificatePinner.Builder()
             .add(hostname, "sha256/oD/WAoRPvbez1Y2dfYfuo4yujAcYHXdv1Ivb2v2MOKk=")
@@ -41,9 +41,9 @@ object RetrofitBuilder {
             }.build()
     }
 
-    fun build(): Retrofit = Retrofit.Builder()
+    fun build(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
-        .client(okHttpClient())
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
